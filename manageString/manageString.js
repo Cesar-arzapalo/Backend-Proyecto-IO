@@ -1,4 +1,5 @@
 const fs = require('fs');
+const child_process = require('child_process');
 
 const aumentarBarraInvertida = (direccion) => {
     let dir = direccion.split('');
@@ -15,24 +16,40 @@ const retrocederUnaCarpeta = (direccion) => {
 
 const escribirArchivo = (dir, data) => new Promise((resolve, reject) => {
     fs.writeFile(dir, data, (err) => {
-        if (err) reject(err);
+        if (err) reject('La direccion del fichero a escribir es incorrecta o no existe');
         resolve('data.json');
     });
 });
 
 const leerArchivo = (dir) => new Promise((resolve, reject) => {
     fs.readFile(dir, (err, data) => {
-        if (err) reject(err);
+        if (err) reject('La direccion del fichero a leer es incorrecta o no existe');
         resolve(data);
     });
 });
 
 const reemplazarRutaDentroFichero = async(nombreVariable, direccion) => {
-    let archivoString = await leerArchivo(direccion);
-    console.log(archivoString.toString());
+    let archivoString = (await leerArchivo(direccion)).toString();
+    archivoString = archivoString.split(nombreVariable).join(direccion);
+    return archivoString;
+};
+
+const generarDentroFichero = async(nombreVariable, direccion, direccionFichero) => {
+    try {
+        console.log(direccionFichero);
+        if (!fs.existsSync(direccionFichero)) child_process.execSync(`type nul > "${direccionFichero}"`);
+    } catch (error) {
+        throw new Error('La direccion del fichero es incorrecta');
+    }
+    const archivoString = await reemplazarRutaDentroFichero(nombreVariable, direccion);
+    console.log(archivoString);
+    await escribirArchivo(archivoString, direccionFichero);
+
+    return 'Se genero de manera correcta el archivo';
+
 };
 
 module.exports = {
     retrocederUnaCarpeta,
-    reemplazarRutaDentroFichero
+    generarDentroFichero
 };
