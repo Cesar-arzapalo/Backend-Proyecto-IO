@@ -4,13 +4,13 @@ const { retrocederUnaCarpeta, generarDentroFichero } = require('../manageString/
 
 const pathRaiz = retrocederUnaCarpeta(__dirname.toString());
 
-const direccionLingoBase = `${pathRaiz}\\lingo\\patrones.ltf`;
-const direccionLingoAEjecutar = `${pathRaiz}\\lingo\\patronesEjecutable.ltf`;
+const direccionLingoBaseNoEjecutable = `${pathRaiz}\\lingo\\patrones.ltf`;
+const direccionLingoBaseEjecutable = `${pathRaiz}\\lingo\\patronesEjecutable.ltf`;
+const direccionExcelEjecutar = `${pathRaiz}\\excel\\patrones.xlsx`;
+const comnadoLingo = `runlingo "${direccionLingoBaseEjecutable}"`;
 
-const comnadoLingo = `runlingo "${direccionLingoAEjecutar}"`;
 
-
-const fichero = generarDentroFichero('direccionExcel', direccionLingoBase, direccionLingoAEjecutar);
+const fichero = generarDentroFichero('direccionExcel', direccionLingoBaseNoEjecutable, direccionExcelEjecutar, direccionLingoBaseEjecutable);
 
 // const comando = child_process.execSync(comnadoLingo).toString();
 

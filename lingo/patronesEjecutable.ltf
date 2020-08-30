@@ -1,0 +1,42 @@
+set default
+set echoin 1
+MODEL:
+SETS:
+  	Patron/1..4/:CnP, OP, CP;
+
+ENDSETS
+
+DATA:
+
+	!Presupuesto;
+	P=@OLE('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\lingo\patronesEjecutable.ltf');
+	!Demanda insatizfecha de estudiantes;
+	DIE=@OLE('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\lingo\patronesEjecutable.ltf');
+	!Demanda total de estudiantes;
+	DTE=@OLE('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\lingo\patronesEjecutable.ltf');
+
+	!Ocupantes por patron;
+	OP=@OLE('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\lingo\patronesEjecutable.ltf');
+	!Costo por patron;	
+	CP=@OLE('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\lingo\patronesEjecutable.ltf');
+
+	!Cantidad del patron de tipo j;
+	@OLE('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\lingo\patronesEjecutable.ltf')=CnP;
+	
+ENDDATA
+
+[OcupantesTotales] Max = @Sum(Patron(j):CnP(j)*OP(j));
+
+[LimitePresupuesto] @Sum(Patron(j):CnP(j)*CP(j))<=P;
+[LimiteEstudiantesActivos] @Sum(Patron(j):CnP(j)*OP(j)) <= DTE;
+[Requerimiento] @Sum(Patron(j):CnP(j)*OP(j)) >= DIE;
+
+!Restriccion de variable entera;
+@for(Patron(j):@gin(Cnp(j)));
+END
+set terseo 1
+go
+nonz volume
+quit
+
+ 
