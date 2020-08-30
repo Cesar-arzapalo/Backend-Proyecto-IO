@@ -9,9 +9,12 @@ const direccionLingoBaseEjecutable = `${pathRaiz}\\lingo\\patronesEjecutable.ltf
 const direccionExcelEjecutar = `${pathRaiz}\\excel\\patrones.xlsx`;
 const comnadoLingo = `runlingo "${direccionLingoBaseEjecutable}"`;
 
+const llamarLingo = async() => {
+    const fichero = await generarDentroFichero('direccionExcel', direccionLingoBaseNoEjecutable, direccionExcelEjecutar, direccionLingoBaseEjecutable);
 
-const fichero = generarDentroFichero('direccionExcel', direccionLingoBaseNoEjecutable, direccionExcelEjecutar, direccionLingoBaseEjecutable);
+    const comando = await child_process.execSync(comnadoLingo).toString();
 
-// const comando = child_process.execSync(comnadoLingo).toString();
+    console.log(comando);
+}
 
-// console.log(comando);
+llamarLingo();

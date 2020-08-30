@@ -15,7 +15,6 @@ const retrocederUnaCarpeta = (direccion) => {
 
 
 const escribirArchivo = (dir, data) => new Promise((resolve, reject) => {
-    console.log(dir);
     fs.writeFile(dir, data, (err) => {
         if (err) reject('La direccion del fichero a escribir es incorrecta o no existe');
         resolve('data.json');
@@ -37,15 +36,12 @@ const reemplazarRutaDentroFichero = async(nombreVariable, direccion, direccionEx
 
 const generarDentroFichero = async(nombreVariable, direccion, direccionExcel, direccionFichero) => {
     try {
-        console.log(direccion);
-        console.log(direccionExcel);
-        console.log(direccionFichero);
         if (!fs.existsSync(direccionFichero)) child_process.execSync(`type nul > "${direccionFichero}"`);
     } catch (error) {
         throw new Error('La direccion del fichero es incorrecta');
     }
     const archivoString = await reemplazarRutaDentroFichero(nombreVariable, direccion, direccionExcel);
-    console.log(archivoString);
+
     await escribirArchivo(direccionFichero, archivoString);
 
     return 'Se genero de manera correcta el archivo';

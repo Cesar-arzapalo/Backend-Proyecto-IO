@@ -9,19 +9,19 @@ ENDSETS
 DATA:
 
 	!Presupuesto;
-	P=@OLE('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\lingo\patronesEjecutable.ltf');
+	P=@OLE('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\excel\patrones.xlsx');
 	!Demanda insatizfecha de estudiantes;
-	DIE=@OLE('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\lingo\patronesEjecutable.ltf');
+	DIE=@OLE('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\excel\patrones.xlsx');
 	!Demanda total de estudiantes;
-	DTE=@OLE('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\lingo\patronesEjecutable.ltf');
+	DTE=@OLE('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\excel\patrones.xlsx');
 
 	!Ocupantes por patron;
-	OP=@OLE('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\lingo\patronesEjecutable.ltf');
+	OP=@OLE('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\excel\patrones.xlsx');
 	!Costo por patron;	
-	CP=@OLE('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\lingo\patronesEjecutable.ltf');
+	CP=@OLE('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\excel\patrones.xlsx');
 
 	!Cantidad del patron de tipo j;
-	@OLE('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\lingo\patronesEjecutable.ltf')=CnP;
+	@OLE('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\excel\patrones.xlsx')=CnP;
 	
 ENDDATA
 
