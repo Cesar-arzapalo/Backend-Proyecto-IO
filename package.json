@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Cesar-arzapalo/Backend-Proyecto-IO/issues"
   },
-  "homepage": "https://github.com/Cesar-arzapalo/Backend-Proyecto-IO#readme"
+  "homepage": "https://github.com/Cesar-arzapalo/Backend-Proyecto-IO#readme",
+  "dependencies": {
+    "exceljs": "^4.1.1"
+  }
 }
