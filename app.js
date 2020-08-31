@@ -5,21 +5,23 @@ const { retrocederUnaCarpeta } = require('./manageString/manageString');
 const { Data } = require('./models/data');
 const { Patron } = require('./models/patron');
 
-const pathRaiz = retrocederUnaCarpeta(__dirname.toString());
+const pathRaiz = __dirname.toString();
 const direccionExcel = `${pathRaiz}\\excel\\patrones.xlsx`;
 
 
 const procesoInicial = async() => {
-    let datos = new Data(10000, 247, 1000, [new Patron(123, 8840),
+    let datos = new Data(1000000, 247, 1000, [new Patron(123, 8840),
         new Patron(120, 8610), new Patron(120, 8610), new Patron(122, 8380)
     ]);
 
-    await escribirParametros(direccionExcel, datos.presupuesto, datos.demandaInsatisfecha, datos.demandaTotal, datos.patrones)
+    console.log(direccionExcel, datos.presupuesto, datos.demandaInsatisfecha, datos.demandaTotal, datos.patrones);
+
+    await escribirParametros(direccionExcel, datos.presupuesto, datos.demandaInsatisfecha, datos.demandaTotal, datos.patrones);
 
 
-    // await leerResultado(direccionExcel);
+    console.log(await leerResultado(direccionExcel));
 
-    // await correrLingo();
+    await correrLingo();
 
     // datos = new Data(20000, 247, 3000, [new Patron(123, 8840),
     //     new Patron(120, 8610), new Patron(120, 8610), new Patron(122, 8380)
