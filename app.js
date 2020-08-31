@@ -5,25 +5,27 @@ const { Patron } = require('./models/patron');
 
 
 const procesoInicial = async() => {
-    let datos = new Data(1000000, 147, 1000, [new Patron(123, 8840),
+    let datos = new Data(1000000, 447, 1000, [new Patron(123, 8840),
         new Patron(120, 8610), new Patron(120, 8610), new Patron(122, 8380)
     ]);
 
     await correrLingo(datos.presupuesto, datos.demandaInsatisfecha, datos.demandaTotal, datos.patrones);
 
 
-    // datos = new Data(200000, 247, 30000, [new Patron(123, 8840),
-    //     new Patron(120, 8610), new Patron(120, 8610), new Patron(122, 8380)
-    // ]);
 
-    // await correrLingo(datos.presupuesto, datos.demandaInsatisfecha, datos.demandaTotal, datos.patrones);
+    datos = new Data(200000, 247, 30000, [new Patron(123, 8840),
+        new Patron(120, 8610), new Patron(120, 8610), new Patron(122, 8380)
+    ]);
 
-    // datos = new Data(100000, 400, 10000, [new Patron(123, 8840),
-    //     new Patron(120, 8610), new Patron(120, 8610), new Patron(122, 8380)
-    // ]);
+    await correrLingo(datos.presupuesto, datos.demandaInsatisfecha, datos.demandaTotal, datos.patrones);
 
-    // await correrLingo(datos.presupuesto, datos.demandaInsatisfecha, datos.demandaTotal, datos.patrones);
+    datos = new Data(100000, 400, 10000, [new Patron(123, 8840),
+        new Patron(120, 8610), new Patron(120, 8610), new Patron(122, 8380)
+    ]);
+
+    await correrLingo(datos.presupuesto, datos.demandaInsatisfecha, datos.demandaTotal, datos.patrones);
 
 };
 
-procesoInicial();
+procesoInicial()
+    .catch(err => console.info(err));

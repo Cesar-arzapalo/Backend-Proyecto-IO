@@ -21,7 +21,7 @@ DATA:
 	CP=@OLE('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\excel\patrones.xlsx');
 
 	!Cantidad del patron de tipo j;
-	@OLE('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\excel\patrones.xlsx')=CnP;
+	@TEXT('C:\Users\Minamura\Documents\Investigacion Operativa I\Proyecto\salida\data.txt')=CnP;
 	
 ENDDATA
 
