@@ -1,50 +1,6 @@
 const Excel = require('exceljs');
 
-const { retrocederUnaCarpeta } = require('../manageString/manageString');
-
-const pathRaiz = retrocederUnaCarpeta(__dirname.toString());
-
-const direccionExcel = `${pathRaiz}\\excel\\patrones.xlsx`;
-
 const workbook = new Excel.Workbook();
-
-
-
-
-// const datos = {
-//     presupuesto,
-//     demandaInsatisfecha,
-//     demandaTotal,
-//     patrones
-// };
-
-const presupuesto = 10000;
-const demandaInsatisfecha = 247;
-const demandaTotal = 1000;
-
-const patrones = [
-    { ocupantes: 123, costo: 8840 },
-    { ocupantes: 120, costo: 8610 },
-    { ocupantes: 120, costo: 8610 },
-    { ocupantes: 112, costo: 8380 }
-];
-
-
-
-const cargarDatos = (presupuesto, demandaInsatisfecha, demandaTotal, patrones) => {
-    datos.presupuesto = presupuesto;
-    datos.demandaInsatisfecha = demandaInsatisfecha;
-    datos.demandaTotal = demandaTotal;
-
-    let idx = 0;
-
-    for (let patron of patrones) {
-        datos.patrones[idx].ocupantes = patron.ocupantes;
-        datos.patrones[idx].costo = patron.costo;
-        idx += 1;
-    }
-
-}
 
 const leerResultado = async(direccion) => {
 
@@ -62,7 +18,7 @@ const leerResultado = async(direccion) => {
     return cantidadPatrones;
 };
 
-const escribirParametros = async(direccion) => {
+const escribirParametros = async(direccion, presupuesto, demandaInsatisfecha, demandaTotal, patrones) => {
     await workbook.xlsx.readFile(direccion);
 
     const woorksheets = workbook.worksheets[0];
@@ -92,13 +48,13 @@ const escribirParametros = async(direccion) => {
 
 };
 
-leerResultado(direccionExcel)
-    .then(resp => console.log(resp))
-    .catch(err => console.log(err));
+// leerResultado(direccionExcel)
+//     .then(resp => console.log(resp))
+//     .catch(err => console.log(err));
 
-escribirParametros(direccionExcel, patrones, presupuesto, demandaInsatisfecha, demandaTotal)
-    .then(resp => console.log('Se escribio de manera correcta los datos'))
-    .catch(err => console.log(err));
+// escribirParametros(direccionExcel, patrones, presupuesto, demandaInsatisfecha, demandaTotal)
+//     .then(resp => console.log('Se escribio de manera correcta los datos'))
+//     .catch(err => console.log(err));
 
 module.exports = {
     leerResultado,

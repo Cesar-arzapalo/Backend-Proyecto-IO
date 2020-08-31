@@ -1,17 +1,48 @@
 const { correrLingo } = require('./conexion/conexionLingo');
 const { leerResultado, escribirParametros } = require('./conexion/conexionExcel');
+const { retrocederUnaCarpeta } = require('./manageString/manageString');
 
-const presupuesto = 10000;
-const demandaInsatisfecha = 247;
-const demandaTotal = 1000;
+const { Data } = require('./models/data');
+const { Patron } = require('./models/patron');
 
-const patrones = [
-    { ocupantes: 123, costo: 8840 },
-    { ocupantes: 120, costo: 8610 },
-    { ocupantes: 120, costo: 8610 },
-    { ocupantes: 112, costo: 8380 }
-];
+const pathRaiz = retrocederUnaCarpeta(__dirname.toString());
+const direccionExcel = `${pathRaiz}\\excel\\patrones.xlsx`;
 
-const procesoInicial = () => {
+
+const procesoInicial = async() => {
+    let datos = new Data(10000, 247, 1000, [new Patron(123, 8840),
+        new Patron(120, 8610), new Patron(120, 8610), new Patron(122, 8380)
+    ]);
+
+    await escribirParametros(direccionExcel, datos.presupuesto, datos.demandaInsatisfecha, datos.demandaTotal, datos.patrones)
+
+
+    // await leerResultado(direccionExcel);
+
+    // await correrLingo();
+
+    // datos = new Data(20000, 247, 3000, [new Patron(123, 8840),
+    //     new Patron(120, 8610), new Patron(120, 8610), new Patron(122, 8380)
+    // ]);
+
+    // await escribirParametros(direccionExcel, datos.presupuesto, datos.demandaInsatisfecha, datos.demandaTotal, datos.patrones)
+
+
+    // await leerResultado(direccionExcel);
+
+    // await correrLingo();
+
+    // datos = new Data(10000, 400, 1000, [new Patron(123, 8840),
+    //     new Patron(120, 8610), new Patron(120, 8610), new Patron(122, 8380)
+    // ]);
+
+    // await escribirParametros(direccionExcel, datos.presupuesto, datos.demandaInsatisfecha, datos.demandaTotal, datos.patrones)
+
+
+    // await leerResultado(direccionExcel);
+
+    // await correrLingo();
 
 };
+
+procesoInicial();
