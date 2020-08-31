@@ -1,10 +1,14 @@
 const Excel = require('exceljs');
+const { retrocederUnaCarpeta } = require('../manageString/manageString');
 
 const workbook = new Excel.Workbook();
 
-const leerResultado = async(direccion) => {
+const pathRaiz = retrocederUnaCarpeta(__dirname.toString());
+const direccionExcel = `${pathRaiz}\\excel\\patrones.xlsx`;
 
-    await workbook.xlsx.readFile(direccion);
+const leerResultado = async() => {
+
+    await workbook.xlsx.readFile(direccionExcel);
 
     const woorksheets = workbook.worksheets[0];
 
@@ -18,8 +22,8 @@ const leerResultado = async(direccion) => {
     return cantidadPatrones;
 };
 
-const escribirParametros = async(direccion, presupuesto, demandaInsatisfecha, demandaTotal, patrones) => {
-    await workbook.xlsx.readFile(direccion);
+const escribirParametros = async(presupuesto, demandaInsatisfecha, demandaTotal, patrones) => {
+    await workbook.xlsx.readFile(direccionExcel);
 
     const woorksheets = workbook.worksheets[0];
     //Presupuesto
@@ -43,9 +47,13 @@ const escribirParametros = async(direccion, presupuesto, demandaInsatisfecha, de
     woorksheets.getCell('C17').value = patrones[2].costo;
     woorksheets.getCell('D17').value = patrones[3].costo;
 
-    return await workbook.xlsx.writeFile(direccion);
+    return await workbook.xlsx.writeFile(direccionExcel);
 
 
+};
+
+const cerrarExcel = async() => {
+    return workbook.xlsx.writeFile(direccionExcel);
 };
 
 // leerResultado(direccionExcel)
@@ -58,5 +66,6 @@ const escribirParametros = async(direccion, presupuesto, demandaInsatisfecha, de
 
 module.exports = {
     leerResultado,
-    escribirParametros
+    escribirParametros,
+    cerrarExcel
 };
